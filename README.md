@@ -1,5 +1,7 @@
 # 🚀 Voyage Exchange - Token Launch Ecosystem
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/309c8ff1-7ea3-4c8e-952f-bc4d91be8274/deploy-status)](https://app.netlify.com/projects/voyagerexchange/deploys)
+
 > **The Ultimate Token Creator Platform on Solana**
 
 ## 🌟 Overview
@@ -172,14 +174,28 @@ npm run start  # Start production server
 ```
 
 ### Production (Vercel)
-1. Connect GitHub repository to Vercel
-2. Add environment variables
-3. Deploy automatically on push to main
+1. Connect your GitHub repository to Vercel.
+2. Add environment variables from `.env.local` in the Vercel dashboard.
+3. Deploy automatically on push to main.
+
+### Production (Netlify)
+1. Connect your GitHub repository to Netlify.
+2. **Base directory:** (leave blank)
+3. Add environment variables in the Netlify dashboard (copy from your `.env.local`).
+4. Ensure `netlify.toml` is in your project root:
+   ```toml
+   [build]
+     command = "npm run build"
+     publish = ".next"
+   ```
+5. Deploy!
+
+> **Note:** Do not commit your `.env.local` file. Add it to `.gitignore`.
 
 ### Custom Deployment
 ```bash
 npm run build
-npm run export  # For static hosting
+npm run start
 ```
 
 ## 🎉 Launch Features

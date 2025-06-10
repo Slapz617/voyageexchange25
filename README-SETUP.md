@@ -10,6 +10,10 @@
 - [Development Setup](#development-setup)
 - [Production Deployment](#production-deployment)
 - [Troubleshooting](#troubleshooting)
+- [Support & Resources](#support--resources)
+- [Contest Submission Notes](#contest-submission-notes)
+
+---
 
 ## 🔧 Prerequisites
 
@@ -24,13 +28,15 @@
 - Familiarity with Solana blockchain
 - Basic knowledge of DeFi concepts
 
+---
+
 ## ⚡ Quick Start
 
 ### 1. Clone and Install
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/solana-gaming-prizes
-cd solana-gaming-prizes
+git clone https://github.com/yourusername/voyageexchange25.git
+cd voyageexchange25
 
 # Install dependencies
 npm install
@@ -43,7 +49,9 @@ npm run dev
 ```
 
 ### 2. Open in Browser
-Navigate to `http://localhost:3000` to see the platform running!
+Navigate to [http://localhost:3000](http://localhost:3000) to see the platform running!
+
+---
 
 ## 🔐 Environment Configuration
 
@@ -72,48 +80,33 @@ NEXT_PUBLIC_TRADING_RAKE_BPS=50
 NEXT_PUBLIC_MINIMUM_STAKE=0.1
 ```
 
+---
+
 ## 🔑 API Keys Setup
 
 ### 1. DexRabbit API Key (Bitquery)
-
-1. **Visit**: [bitquery.io](https://bitquery.io/)
-2. **Sign Up**: Create a free account
-3. **Navigate**: Go to API section
-4. **Generate**: Create new API key
-5. **Copy**: Add to `NEXT_PUBLIC_BITQUERY_API_KEY`
-
-**Features Enabled**:
-- Real-time DEX analytics
-- Token price tracking
-- Trading volume data
-- Liquidity metrics
+- Visit [bitquery.io](https://bitquery.io/)
+- Create a free account and generate an API key
+- Add to `NEXT_PUBLIC_BITQUERY_API_KEY`
 
 ### 2. Slerf.tools API Key
-
-1. **Visit**: [slerf.tools](https://slerf.tools/)
-2. **Register**: Create developer account
-3. **API Access**: Request API access
-4. **Generate**: Create API key
-5. **Add**: Set `NEXT_PUBLIC_SLERF_API_KEY`
-
-**Features Enabled**:
-- Token creation
-- Presale management
-- Metadata hosting
-- Launch analytics
+- Visit [slerf.tools](https://slerf.tools/)
+- Register and request API access
+- Add to `NEXT_PUBLIC_SLERF_API_KEY`
 
 ### 3. Jupiter Affiliate Setup
+- Use your Solana wallet address
+- Register for the Jupiter affiliate program
+- Set `NEXT_PUBLIC_JUPITER_AFFILIATE_ACCOUNT`
+- Set `NEXT_PUBLIC_JUPITER_AFFILIATE_FEE_BPS=25` (0.25%)
 
-1. **Wallet**: Use your Solana wallet address
-2. **Register**: Sign up for Jupiter affiliate program
-3. **Configure**: Set `NEXT_PUBLIC_JUPITER_AFFILIATE_ACCOUNT`
-4. **Fee Rate**: Set `NEXT_PUBLIC_JUPITER_AFFILIATE_FEE_BPS=25` (0.25%)
+---
 
 ## 💻 Development Setup
 
 ### Project Structure
 ```
-solana-gaming-prizes/
+voyageexchange25/
 ├── app/                    # Next.js 13 app directory
 │   ├── chess/             # Chess game page
 │   ├── poker/             # Poker game page
@@ -129,26 +122,17 @@ solana-gaming-prizes/
 │   ├── dexrabbit-api.ts   # DexRabbit analytics
 │   ├── slerf-api.ts       # Slerf.tools integration
 │   └── solana-program.ts  # Solana program utilities
-└── public/               # Static assets
+└── public/                # Static assets
 ```
 
 ### Development Commands
 
 ```bash
-# Start development server
-npm run dev
-
-# Build for production
-npm run build
-
-# Start production server
-npm start
-
-# Lint code
-npm run lint
-
-# Type checking
-npm run type-check
+npm run dev        # Start development server
+npm run build      # Build for production
+npm start          # Start production server
+npm run lint       # Lint code
+npm run type-check # Type checking
 ```
 
 ### Environment-Specific Setup
@@ -164,6 +148,8 @@ NEXT_PUBLIC_SOLANA_RPC_URL=https://api.devnet.solana.com
 NEXT_PUBLIC_SOLANA_NETWORK=mainnet-beta
 NEXT_PUBLIC_SOLANA_RPC_URL=https://api.mainnet-beta.solana.com
 ```
+
+---
 
 ## 🌟 Features Configuration
 
@@ -191,18 +177,17 @@ NEXT_PUBLIC_SOLANA_RPC_URL=https://api.mainnet-beta.solana.com
 - **Volume Tracking**: 24h/7d/30d metrics
 - **Token Discovery**: Trending tokens
 
+---
+
 ## 🚀 Production Deployment
 
 ### Vercel Deployment (Recommended)
-
 1. **Connect Repository**
    ```bash
-   # Push to GitHub
    git add .
    git commit -m "Initial commit"
    git push origin main
    ```
-
 2. **Deploy to Vercel**
    - Visit [vercel.com](https://vercel.com)
    - Import your GitHub repository
@@ -214,15 +199,35 @@ NEXT_PUBLIC_SOLANA_RPC_URL=https://api.mainnet-beta.solana.com
    - Add all environment variables from `.env.local`
    - Redeploy if needed
 
-### Other Deployment Options
+---
 
-#### Netlify
-```bash
-npm run build
-# Upload dist folder to Netlify
-```
+### Netlify Deployment
 
-#### AWS/Google Cloud
+1. **Ensure `netlify.toml` is in your project root**  
+   Your folder should look like:
+   ```
+   /voyageexchange25
+     |-- netlify.toml
+     |-- package.json
+     |-- next.config.js
+     |-- ...
+   ```
+2. **Example `netlify.toml` for Next.js:**
+   ```toml
+   [build]
+     command = "npm run build"
+     publish = ".next"
+   ```
+3. **Deploy Steps:**
+   - Push your code to GitHub.
+   - Connect your repo on [Netlify](https://app.netlify.com/).
+   - **Base directory:** leave blank.
+   - Add all environment variables from `.env.local` in the Netlify dashboard.
+   - Netlify will auto-detect `netlify.toml` and build your project.
+
+---
+
+### AWS/Google Cloud
 ```bash
 # Build production bundle
 npm run build
@@ -230,23 +235,21 @@ npm run build
 # Deploy using your preferred cloud provider
 ```
 
+---
+
 ## 🔧 Troubleshooting
 
 ### Common Issues
 
 #### 1. Wallet Connection Failed
-```bash
-# Check wallet extension is installed
-# Verify network (devnet vs mainnet)
-# Clear browser cache/cookies
-```
+- Check wallet extension is installed
+- Verify network (devnet vs mainnet)
+- Clear browser cache/cookies
 
 #### 2. API Keys Not Working
-```bash
-# Verify API keys are correct
-# Check API rate limits
-# Ensure .env.local is in gitignore
-```
+- Verify API keys are correct
+- Check API rate limits
+- Ensure `.env.local` is in `.gitignore`
 
 #### 3. Build Errors
 ```bash
@@ -261,17 +264,14 @@ npm run build
 ```
 
 #### 4. Solana Connection Issues
-```bash
-# Check RPC endpoint status
-# Try different RPC provider
-# Verify network configuration
-```
+- Check RPC endpoint status
+- Try different RPC provider
+- Verify network configuration
 
 ### Performance Optimization
 
 #### Bundle Size
 ```bash
-# Analyze bundle size
 npm install -g @next/bundle-analyzer
 ANALYZE=true npm run build
 ```
@@ -285,6 +285,8 @@ ANALYZE=true npm run build
 - Enable Redis for production
 - Implement service worker
 - Use CDN for static assets
+
+---
 
 ## 📞 Support & Resources
 
@@ -303,6 +305,8 @@ ANALYZE=true npm run build
 - **Solana Cookbook**: [solanacookbook.com](https://solanacookbook.com)
 - **Anchor Framework**: [anchor-lang.com](https://anchor-lang.com)
 - **Metaplex**: [metaplex.com](https://metaplex.com)
+
+---
 
 ## 🎯 Contest Submission Notes
 
